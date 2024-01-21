@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 from stem.control import Controller
 import threading
@@ -48,8 +49,8 @@ def get_message():
 class Server:
     def __init__(self):
         # starting tor
-        #threading.Thread(target=subprocess.Popen, args=("../tor/tor/tor.exe -f ../tor/tor/torrc",),
-        #                kwargs={'shell': False, 'stdout': subprocess.DEVNULL}).start()
+        threading.Thread(target=subprocess.Popen, args=("../tor/tor/tor.exe -f ../tor/tor/torrc",),
+                        kwargs={'shell': False, 'stdout': subprocess.DEVNULL}).start()
 
         # getting control over tor
         controller = Controller.from_port(address="127.0.0.1", port=9051)
